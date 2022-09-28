@@ -1,0 +1,10 @@
+apiVersion: onboarding.my.domain/v1
+kind: Chaosmonkey
+metadata:
+  name: chaosmonkey-sample
+spec:
+  podName: foo
+  period: 20s
+  withLabels:
+    component: grafana
+

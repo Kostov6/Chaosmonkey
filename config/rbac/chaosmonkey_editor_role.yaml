@@ -1,0 +1,24 @@
+# permissions for end users to edit chaosmonkeys.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: chaosmonkey-editor-role
+rules:
+- apiGroups:
+  - onboarding.my.domain
+  resources:
+  - chaosmonkeys
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - onboarding.my.domain
+  resources:
+  - chaosmonkeys/status
+  verbs:
+  - get

@@ -1,0 +1,20 @@
+domain: my.domain
+layout:
+- go.kubebuilder.io/v3
+projectName: chaosmonkey
+repo: github.com/Kostov6/chaosmonkey
+resources:
+- api:
+    crdVersion: v1
+    namespaced: true
+  controller: true
+  domain: my.domain
+  group: onboarding
+  kind: Chaosmonkey
+  path: github.com/Kostov6/chaosmonkey/api/v1
+  version: v1
+  webhooks:
+    defaulting: true
+    validation: true
+    webhookVersion: v1
+version: "3"

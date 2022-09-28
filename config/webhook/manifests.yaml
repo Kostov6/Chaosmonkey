@@ -1,0 +1,54 @@
+---
+apiVersion: admissionregistration.k8s.io/v1
+kind: MutatingWebhookConfiguration
+metadata:
+  creationTimestamp: null
+  name: mutating-webhook-configuration
+webhooks:
+- admissionReviewVersions:
+  - v1
+  clientConfig:
+    service:
+      name: webhook-service
+      namespace: system
+      path: /mutate-onboarding-my-domain-v1-chaosmonkey
+  failurePolicy: Fail
+  name: mchaosmonkey.kb.io
+  rules:
+  - apiGroups:
+    - onboarding.my.domain
+    apiVersions:
+    - v1
+    operations:
+    - CREATE
+    - UPDATE
+    resources:
+    - chaosmonkeys
+  sideEffects: None
+---
+apiVersion: admissionregistration.k8s.io/v1
+kind: ValidatingWebhookConfiguration
+metadata:
+  creationTimestamp: null
+  name: validating-webhook-configuration
+webhooks:
+- admissionReviewVersions:
+  - v1
+  clientConfig:
+    service:
+      name: webhook-service
+      namespace: system
+      path: /validate-onboarding-my-domain-v1-chaosmonkey
+  failurePolicy: Fail
+  name: vchaosmonkey.kb.io
+  rules:
+  - apiGroups:
+    - onboarding.my.domain
+    apiVersions:
+    - v1
+    operations:
+    - CREATE
+    - UPDATE
+    resources:
+    - chaosmonkeys
+  sideEffects: None
